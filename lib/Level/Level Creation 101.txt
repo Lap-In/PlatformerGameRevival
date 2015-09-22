@@ -1,0 +1,44 @@
+                      #------------------------#
+                      |   Level Creation 101   |
+                      #------------------------#
+		
+	The level are format as such:
+		° A header which tell the name and the size of the level
+		° The body which contains the level itself
+		
+			#---------------------------------------------------------------#
+
+	# HEADERS :
+	
+		A Header is composed of the name and the size of the level.
+		
+		It is constructed as so :
+			- The name on quote: "Example Name"
+			- : which seperate the name and the size value (optional)
+			- The value of the size in the x and y axis in brackets: {x,y}
+			
+		Example : "Example Level" : {x,y}
+		
+			#---------------------------------------------------------------#		
+		
+	# BODY :
+	
+		The body allows level design [Note: It is important you respect the size you set 
+								 	  in the headers unless you want the program to crash :) ]
+								 	  
+		It is constructed as so :
+			- As many line as the x axis request
+			- As many character in a line as the y axis request
+			- One line begin and end with a '|'
+			- A character which represent the code of the tiles used
+			
+		Tiles = { ' ' = empty,
+                  '1' = black square currently,
+                  '2' = red square currently }
+				  
+		Exemple : 
+                  |   1   111  1 |
+                  |   1        1 |
+                  |   2222222222 |
+				  
+			#---------------------------------------------------------------#		
