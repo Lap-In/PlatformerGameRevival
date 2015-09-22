@@ -82,13 +82,13 @@ public class Game {
 
 		// If the player press the space bar, make the hero jumping
 		if (Constante.upPressed && !Constante.isLimitJump) {
-			// Constante.hero.jump();
+			Constante.hero.jump();
 		} else {
-			// Constante.isLimitJump = true;
+			Constante.isLimitJump = true;
 		}
 
 		// Check and, if needed, apply the force of gravity
-		// checkGravity();
+		checkGravity();
 
 		// Update the entity of the hero
 		Constante.hero.updateEntity();
@@ -97,38 +97,38 @@ public class Game {
 	/**
 	 * Check if a force of gravitation is needed for an entity
 	 */
-	// public void checkGravity() {
-	// if (!checkCollisionLevel() && Constante.isLimitJump) {
-	// applyGravity();
-	// } else {
-	// if (checkCollisionLevel() && Constante.isLimitJump) {
-	// Constante.isLimitJump = false;
-	// Constante.frameOnJump = 0;
-	// }
-	// Constante.frameOnFalling = 1;
-	// }
-	// }
+	public void checkGravity() {
+		if (checkCollisionX() == 1 && Constante.isLimitJump) {
+			applyGravity();
+		} else {
+			if (checkCollisionX() == 0 && Constante.isLimitJump) {
+				Constante.isLimitJump = false;
+				Constante.frameOnJump = 0;
+			}
+			Constante.frameOnFalling = 1;
+		}
+	}
 
 	/**
 	 * Check if the hero collide with a tiles
 	 * 
 	 * @return true if the hero collide, false otherwise
 	 */
-	// public boolean checkCollisionLevel() {
-	// return currentLevel.getLvl()[((int)
-	// Constante.hero.getCoordOrigin().getX() + 1)
-	// / Tiles.TILE_SIZE][(int) Constante.hero.getCoordOrigin().getY() /
-	// Tiles.TILE_SIZE] != null;
-	// }
+	public int checkCollisionX() {
+		if (currentLevel.getLvl()[(Constante.hero.getFeetY() + 1) / Tiles.TILE_SIZE][Constante.hero.getFeetX()
+				/ Tiles.TILE_SIZE] == null)
+			return 1;
+		else
+			return 0;
+	}
 
 	/**
 	 * Apply a force to the entity
 	 */
-	// public void applyGravity() {
-	// Constante.hero.move((Constante.frameOnFalling * Constante.fallSpeedX),
-	// 0);
-	// Constante.frameOnFalling++;
-	// }
+	public void applyGravity() {
+		Constante.hero.move(0, (Constante.frameOnFalling * Constante.fallSpeedX));
+		Constante.frameOnFalling++;
+	}
 
 	// Function Main :
 

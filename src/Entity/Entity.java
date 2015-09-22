@@ -171,4 +171,22 @@ public abstract class Entity {
 		this.speed = speed;
 	}
 
+	/**
+	 * Get the x position of the feet of this entity
+	 * 
+	 * @return x position of the feet
+	 */
+	public int getFeetX() {
+		return (int) hitbox.getUpLeftPoint().getIntX() + hitbox.getSizeX();
+	}
+	
+	/**
+	 * Get the y position of the feet of this entity
+	 * 
+	 * @return y position of the feet
+	 */
+	public int getFeetY() {
+		return (int) hitbox.getUpLeftPoint().getIntY() + hitbox.getSizeY();
+	}
+
 }

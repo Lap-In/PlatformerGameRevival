@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
+import Util.Constante;
 import Util.Coordinate2D;
 
 /**
@@ -64,18 +65,18 @@ public class PlayableCharacter extends Entity {
 	}
 
 	// TODO Rewrite this function
-	// public void jump() {
-	// TODO Auto-generated method stub
-	// if (Constante.upPressed && Constante.frameOnJump < jumpLimit) {
-	// if (Constante.frameOnJump <= 0)
-	// coordOrigin.add(jumpMin * speed, 0);
-	// else
-	// coordOrigin.add(-2 * speed, 0);
+	public void jump() {
+		// TODO Auto-generated method stub
+		if (Constante.upPressed && Constante.frameOnJump < jumpLimit) {
+			if (Constante.frameOnJump <= 0)
+				move(0, jumpMin * speed);
+			else
+				move(0, -2 * speed);
 
-	// Constante.frameOnJump++;
-	// } else if (Constante.frameOnJump >= jumpLimit)
-	// Constante.isLimitJump = true;
-	// }
+			Constante.frameOnJump++;
+		} else if (Constante.frameOnJump >= jumpLimit)
+			Constante.isLimitJump = true;
+	}
 
 	/**
 	 * Function who paint the entity unto the screen

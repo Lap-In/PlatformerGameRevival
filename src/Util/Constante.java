@@ -20,7 +20,7 @@ public class Constante {
 	public static boolean gameRunning = true;
 	
 	// Speed of the movement of the scrolling
-	public static double speedScreen = 0.5;
+	public static float speedScreen = 0.5f;
 
 	// The hero of the game
 	public static PlayableCharacter hero = new PlayableCharacter("James", 2, null, new Coordinate2D(25, 430));
@@ -44,5 +44,5 @@ public class Constante {
 	public static int frameOnFalling = 0;
 	
 	// Speed of the fall in the x axis
-	public static double fallSpeedX = 0.01;
+	public static float fallSpeedX = 0.01f;
 }
