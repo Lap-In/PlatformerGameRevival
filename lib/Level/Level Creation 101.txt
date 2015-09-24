@@ -36,7 +36,7 @@
                   '1' = black square currently,
                   '2' = red square currently }
 				  
-		Exemple : 
+		Example : 
                   |   1   111  1 |
                   |   1        1 |
                   |   2222222222 |

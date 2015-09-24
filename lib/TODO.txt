@@ -1,7 +1,7 @@
 X Seperate the Game from the Screen
 X Be able to stock the Level on a writtable file
 X Having wider level
+X Externalize the check of the boundaries in Level
 
-° Externalize the check of the boundaries in Level
 ° Smoothing the movement/jump of the hero
 ° Developping a scrolling screen
