@@ -41,11 +41,14 @@ public class Screen extends Canvas implements KeyListener {
 	/**
 	 * Constructor
 	 */
-	public Screen() {
+	public Screen(Dimension sizeLevel) {
 		// The instantiation of the window and canvas
 		frame = new JFrame("TestEcran");
-		setSize(new Dimension(500, 500));
+
 		hitbox = new Hitbox(new Coordinate2D(), 500, 500);
+		setSize(sizeLevel);
+		setLocation(hitbox.getUpLeftPoint().getIntX(), hitbox.getUpLeftPoint().getIntY());
+
 		frame.add(this);
 		frame.setLayout(null);
 		frame.setPreferredSize(new Dimension(506, 509));
@@ -73,6 +76,30 @@ public class Screen extends Canvas implements KeyListener {
 	// Function :
 
 	/**
+	 * Reset the size of the screen with value of the new level to paint
+	 * 
+	 * @param sizeLevel
+	 *            size new level
+	 */
+	public void setNewLevelDimension(Dimension sizeLevel) {
+		setSize(sizeLevel);
+	}
+
+	// Getters/Setters :
+
+	/**
+	 * Add the coordinate of the screen hitbox
+	 * 
+	 * @param coordToAdd
+	 */
+	public void addToCoordHitbox(int xCoordToAdd, int yCoordToAdd) {
+		hitbox.getUpLeftPoint().add(xCoordToAdd, yCoordToAdd);
+		setLocation(hitbox.getUpLeftPoint().getIntX(), hitbox.getUpLeftPoint().getIntY());
+	}
+
+	// Function Paint :
+
+	/**
 	 * Paint all the requirement of the level and entity
 	 * 
 	 * @param lvl
@@ -83,7 +110,7 @@ public class Screen extends Canvas implements KeyListener {
 		// White out the screen
 		g.setColor(Color.white);
 		g.fillRect(0, 0, lvl.getXSIZE() * Tiles.TILE_SIZE, lvl.getYSIZE() * Tiles.TILE_SIZE);
-		
+
 		// Paint all the component
 		lvl.paint(g);
 		Constante.hero.paint(g, Color.blue);

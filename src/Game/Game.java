@@ -1,11 +1,13 @@
 package Game;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.io.File;
 
 import Level.Level;
 import Tiles.Tiles;
 import Util.Constante;
+import Util.Coordinate2D;
 
 /**
  * Game :
@@ -30,8 +32,9 @@ public class Game {
 	 */
 	public Game() {
 		// Instantiation of the main variables
-		screen = new Screen();
 		currentLevel = new Level(new File("lib/Level/lvl01.lvl"));
+		screen = new Screen(
+				new Dimension(currentLevel.getXSIZE() * Tiles.TILE_SIZE, currentLevel.getYSIZE() * Tiles.TILE_SIZE));
 
 		for (int i = 0; i < listePoint.length; i++) {
 			listePoint[i] = new Point(0, 0);
@@ -71,14 +74,18 @@ public class Game {
 
 		// If the player press the left key, make the hero move until it buck
 		// against the boundaries
-		if (Constante.leftPressed && Constante.hero.getHitbox().getCoordOrigin().getIntX() >= 0)
+		if (Constante.leftPressed && Constante.hero.getHitbox().getCoordOrigin().getIntX() >= 0) {
 			Constante.hero.move(-1, 0);
+			screen.addToCoordHitbox(1, 0);
+		}
 
 		// If the player press the right key, make the hero move until it buck
 		// against the boundaries
 		if (Constante.rightPressed && Constante.hero.getHitbox().getCoordOrigin()
-				.getIntX() <= (currentLevel.getXSIZE() * Tiles.TILE_SIZE - Constante.hero.getHitbox().getSizeX()))
+				.getIntX() <= (currentLevel.getXSIZE() * Tiles.TILE_SIZE - Constante.hero.getHitbox().getSizeX())) {
+			screen.addToCoordHitbox(-1, 0);
 			Constante.hero.move(1, 0);
+		}
 
 		// If the player press the space bar, make the hero jumping
 		if (Constante.upPressed && !Constante.isLimitJump) {
