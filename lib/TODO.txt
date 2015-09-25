@@ -2,6 +2,29 @@ X Seperate the Game from the Screen
 X Be able to stock the Level on a writtable file
 X Having wider level
 X Externalize the check of the boundaries in Level
+X Developping a scrolling screen
 
 ° Smoothing the movement/jump of the hero
-° Developping a scrolling screen
+° Recalibrate the level collision with the screen position
+° Regulate the tiles collision problem
+° Prevent the hero from crashing the game by going out of the screen
+° Having a end of level
+° Loop the level when ended
+° Having other level
+° Looping through the different level
+° Camera following the player on the y axis
+° Having collectable items
+° Display the collected items
+° Having monsters
+° Monster can kill the hero
+° Hero can kill the monster by jumping on it's head
+° Monster start their routine only when visible on the screen
+° Hero has live
+° Display the live of the hero
+° Replacing entity with sprites
+° Replacing tiles with corresponding sprites
+° Having a background
+° Having animation
+
+# ANDDDDdddd that's it ! Engine mostly finished ;) (there're more things
+ I can do but, I think at this point I will be able to go in a real engine.)

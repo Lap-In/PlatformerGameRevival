@@ -37,6 +37,9 @@ public class Constante {
 	// Is the jump limit of the hero has been meet ?
 	public static boolean isLimitJump = true;
 	
+	// Prevent the hero of moving if not intended
+	public static boolean noHeroMovement = false;
+	
 	// Number of frame the hero has jump
 	public static int frameOnJump = 0;
 	

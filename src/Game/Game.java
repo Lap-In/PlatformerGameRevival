@@ -72,20 +72,11 @@ public class Game {
 	 */
 	public void gameLogic() {
 
-		// If the player press the left key, make the hero move until it buck
-		// against the boundaries
-		if (Constante.leftPressed && Constante.hero.getHitbox().getCoordOrigin().getIntX() >= 0) {
-			Constante.hero.move(-1, 0);
-			screen.addToCoordHitbox(-1, 0);
-		}
+		// Update the scrolling of the level
+		updateScrolling();
 
-		// If the player press the right key, make the hero move until it buck
-		// against the boundaries
-		if (Constante.rightPressed && Constante.hero.getHitbox().getCoordOrigin()
-				.getIntX() <= (currentLevel.getXSIZE() * Tiles.TILE_SIZE - Constante.hero.getHitbox().getSizeX())) {
-			screen.addToCoordHitbox(+1, 0);
-			Constante.hero.move(+1, 0);
-		}
+		// Update the hero's position
+		updateHeroMovement();
 
 		// If the player press the space bar, make the hero jumping
 		if (Constante.upPressed && !Constante.isLimitJump) {
@@ -99,6 +90,51 @@ public class Game {
 
 		// Update the entity of the hero
 		Constante.hero.updateEntity();
+	}
+
+	/**
+	 * Update the scrolling of the level
+	 */
+	public void updateScrolling() {
+		// If the player press the left key, make the screen scrolls to the left
+		// until it bucks against the level boundaries
+		if (Constante.leftPressed && screen.getHitbox().getUpLeftPoint().getFloatX() > 0
+				&& Constante.hero.getHitbox().getCoordOrigin().getFloatX() + 1 < 100) {
+			screen.addToCoordHitbox(-1, 0);
+			Constante.noHeroMovement = true;
+		}
+
+		// If the player press the right key, make the screen scrolls to the
+		// right until it bucks against the level boundaries
+		else if (Constante.rightPressed
+				&& (screen.getHitbox().getUpLeftPoint().getIntX() + screen.getHitbox().getSizeX()) < (currentLevel.getXSIZE() * Tiles.TILE_SIZE)
+				&& Constante.hero.getHitbox().getCoordOrigin().getFloatX() + 1 > 400) {
+			screen.addToCoordHitbox(+1, 0);
+			Constante.noHeroMovement = true;
+		}
+		
+		// If no scrolling needed
+		else
+			Constante.noHeroMovement = false;
+	}
+
+	/**
+	 * Update the player's position according to his movement
+	 */
+	public void updateHeroMovement() {
+		// If the player press the left key, make the hero move until it buck
+		// against the boundaries of the screen
+		if (!Constante.noHeroMovement && Constante.leftPressed
+				&& Constante.hero.getHitbox().getCoordOrigin().getIntX() >= Constante.hero.getHitbox().getSizeX() / 2) {
+			Constante.hero.move(-1, 0);
+		}
+
+		// If the player press the right key, make the hero move until it buck
+		// against the boundaries of the screen
+		if (!Constante.noHeroMovement && Constante.rightPressed && Constante.hero.getHitbox().getCoordOrigin()
+				.getIntX() <= (screen.getHitbox().getSizeX() - (Constante.hero.getHitbox().getSizeX() / 2))) {
+			Constante.hero.move(+1, 0);
+		}
 	}
 
 	/**

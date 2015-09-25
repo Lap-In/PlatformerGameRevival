@@ -83,6 +83,15 @@ public class Screen extends Canvas implements KeyListener {
 		hitbox.getUpLeftPoint().add(xCoordToAdd, yCoordToAdd);
 	}
 
+	/**
+	 * Get the hitbox of the screen
+	 * 
+	 * @return the hitbox of the screen
+	 */
+	public Hitbox getHitbox() {
+		return hitbox;
+	}
+
 	// Function Paint :
 
 	/**

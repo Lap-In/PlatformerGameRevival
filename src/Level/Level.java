@@ -192,10 +192,10 @@ public class Level {
 		int y0 = screen.getTilesUpLeftPoint().getIntY();
 		int x0 = screen.getTilesUpLeftPoint().getIntX();
 
-		for (int column = screen.getTilesUpLeftPoint().getIntY(); column < screen.getTilesSizeY(); column++) {
-			for (int line = screen.getTilesUpLeftPoint().getIntX(); line < screen.getTilesSizeX(); line++) {
+		for (int column = screen.getTilesUpLeftPoint().getIntY(); column < y0 + screen.getTilesSizeY(); column++) {
+			for (int line = screen.getTilesUpLeftPoint().getIntX(); line < x0 + screen.getTilesSizeX(); line++) {
 				if (lvl[column][line] != null) {
-					lvl[column][line].paint(g, (line - y0) * Tiles.TILE_SIZE, (column - x0) * Tiles.TILE_SIZE,
+					lvl[column][line].paint(g, (line - x0) * Tiles.TILE_SIZE, (column - y0) * Tiles.TILE_SIZE,
 							Color.BLACK);
 				}
 			}
