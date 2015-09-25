@@ -1,7 +1,10 @@
 package Util;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
+
+import Tiles.Tiles;
 
 /**
  * Hitbox :
@@ -98,6 +101,15 @@ public class Hitbox {
 	}
 
 	/**
+	 * Get the up-left point of the hitbox tiles dependent
+	 * 
+	 * @return the up-left point of the hitbox tiles dependent
+	 */
+	public Coordinate2D getTilesUpLeftPoint() {
+		return new Coordinate2D(up_leftPoint.getFloatX() / Tiles.TILE_SIZE, up_leftPoint.getFloatY() / Tiles.TILE_SIZE);
+	}
+
+	/**
 	 * Get the length of the hitbox in the x axis
 	 * 
 	 * @return length of the hitbox in the x axis
@@ -107,12 +119,39 @@ public class Hitbox {
 	}
 
 	/**
+	 * Get the length of the hitbox in the x axis tiles dependent
+	 * 
+	 * @return length of the hitbox in the x axis tiles dependent
+	 */
+	public int getTilesSizeX() {
+		return sizeX / Tiles.TILE_SIZE;
+	}
+
+	/**
 	 * Get the length of the hitbox in the y axis
 	 * 
 	 * @return length of the hitbox in the y axis
 	 */
 	public int getSizeY() {
 		return sizeY;
+	}
+
+	/**
+	 * Get the length of the hitbox in the y axis tiles dependent
+	 * 
+	 * @return length of the hitbox in the y axis tiles dependent
+	 */
+	public int getTilesSizeY() {
+		return sizeY / Tiles.TILE_SIZE;
+	}
+
+	/**
+	 * Get the dimension of the hitbox
+	 * 
+	 * @return the dimension of the hitbox
+	 */
+	public Dimension getDimension() {
+		return new Dimension(sizeX, sizeY);
 	}
 
 	// The paint Function :

@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
+import Util.Coordinate2D;
+import Util.Hitbox;
+
 /**
  * Tiles :
  * 
@@ -35,6 +38,23 @@ public class Tiles {
 	public Tiles(String nom, Image tileSpr) {
 		this.nom = nom;
 		this.tilesSpr = tileSpr;
+	}
+
+	// Function :
+
+	/**
+	 * Return a hitbox of the tiles allowing hitbox colliding check
+	 * 
+	 * @param x
+	 *            the coordinate of the tiles in the x axis (parent to the tiles
+	 *            array)
+	 * @param y
+	 *            the coordinate of the tiles in the y axis (parent to the tiles
+	 *            array)
+	 * @return the hitbox of the tiles
+	 */
+	public static Hitbox returnTilesHitbox(int x, int y) {
+		return new Hitbox(new Coordinate2D(x * Tiles.TILE_SIZE, y * Tiles.TILE_SIZE), Tiles.TILE_SIZE, Tiles.TILE_SIZE);
 	}
 
 	// Getters/Setters :

@@ -10,6 +10,7 @@ import java.util.Arrays;
 
 import Tiles.Tiles;
 import Util.Constante;
+import Util.Hitbox;
 
 /**
  * Level :
@@ -185,12 +186,17 @@ public class Level {
 	 * @param g
 	 *            the Graphics2D o the screen
 	 */
-	public void paint(Graphics2D g) {
+	public void paint(Graphics2D g, Hitbox screen) {
 		g.setColor(Color.black);
-		for (int column = 0; column < lvl.length; column++) {
-			for (int line = 0; line < lvl[column].length; line++) {
+
+		int y0 = screen.getTilesUpLeftPoint().getIntY();
+		int x0 = screen.getTilesUpLeftPoint().getIntX();
+
+		for (int column = screen.getTilesUpLeftPoint().getIntY(); column < screen.getTilesSizeY(); column++) {
+			for (int line = screen.getTilesUpLeftPoint().getIntX(); line < screen.getTilesSizeX(); line++) {
 				if (lvl[column][line] != null) {
-					lvl[column][line].paint(g, line * Tiles.TILE_SIZE, column * Tiles.TILE_SIZE, Color.BLACK);
+					lvl[column][line].paint(g, (line - y0) * Tiles.TILE_SIZE, (column - x0) * Tiles.TILE_SIZE,
+							Color.BLACK);
 				}
 			}
 		}
