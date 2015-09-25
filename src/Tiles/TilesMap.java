@@ -23,9 +23,9 @@ public class TilesMap {
 	public TilesMap() {
 		// TODO Auto-generated constructor stub
 		tilesMap = new HashMap<String, Tiles>();
-		tilesMap.put("tiles_01", new Tiles("tiles_01", null));
-		tilesMap.put("tiles_02", new Tiles("tiles_02", null));
-		tilesMap.put("tiles_03", new Tiles("tiles_03", null));
+		tilesMap.put("tiles_01", new Tiles("tiles_01", null, true));
+		tilesMap.put("tiles_02", new Tiles("tiles_02", null, true));
+		tilesMap.put("tiles_03", new Tiles("tiles_03", null, false));
 	}
 
 	// Getters/Setters :

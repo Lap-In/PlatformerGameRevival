@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.io.File;
 
+import Entity.Entity;
 import Level.Level;
 import Tiles.Tiles;
 import Util.Constante;
@@ -86,7 +87,7 @@ public class Game {
 		}
 
 		// Check and, if needed, apply the force of gravity
-		checkGravity();
+		checkGravity(Constante.hero);
 
 		// Update the entity of the hero
 		Constante.hero.updateEntity();
@@ -107,12 +108,13 @@ public class Game {
 		// If the player press the right key, make the screen scrolls to the
 		// right until it bucks against the level boundaries
 		else if (Constante.rightPressed
-				&& (screen.getHitbox().getUpLeftPoint().getIntX() + screen.getHitbox().getSizeX()) < (currentLevel.getXSIZE() * Tiles.TILE_SIZE)
+				&& (screen.getHitbox().getUpLeftPoint().getIntX()
+						+ screen.getHitbox().getSizeX()) < (currentLevel.getXSIZE() * Tiles.TILE_SIZE)
 				&& Constante.hero.getHitbox().getCoordOrigin().getFloatX() + 1 > 400) {
 			screen.addToCoordHitbox(+1, 0);
 			Constante.noHeroMovement = true;
 		}
-		
+
 		// If no scrolling needed
 		else
 			Constante.noHeroMovement = false;
@@ -140,11 +142,11 @@ public class Game {
 	/**
 	 * Check if a force of gravitation is needed for an entity
 	 */
-	public void checkGravity() {
-		if (checkCollisionX() == 1 && Constante.isLimitJump) {
+	public void checkGravity(Entity entity) {
+		if (checkCollision(entity) && Constante.isLimitJump) {
 			applyGravity();
 		} else {
-			if (checkCollisionX() == 0 && Constante.isLimitJump) {
+			if (!checkCollision(entity) && Constante.isLimitJump) {
 				Constante.isLimitJump = false;
 				Constante.frameOnJump = 0;
 			}
@@ -157,12 +159,23 @@ public class Game {
 	 * 
 	 * @return true if the hero collide, false otherwise
 	 */
-	public int checkCollisionX() {
-		if (currentLevel.getLvl()[(Constante.hero.getFeetY() + 1) / Tiles.TILE_SIZE][Constante.hero.getFeetX()
-				/ Tiles.TILE_SIZE] == null)
-			return 1;
+	public boolean checkCollision(Entity entity) {
+		// If entity is in the void
+		if (currentLevel.getLvl()[(entity.getFeetY() + 1)
+				/ Tiles.TILE_SIZE][(screen.getHitbox().getUpLeftPoint().getIntX() + entity.getFeetX() - 2)
+						/ Tiles.TILE_SIZE] == null)
+			return true;
+
+		// If the entity collide with a tiles
+		else if (currentLevel.getLvl()[(entity.getFeetY() + 1)
+				/ Tiles.TILE_SIZE][(screen.getHitbox().getUpLeftPoint().getIntX() + entity.getFeetX() - 2)
+						/ Tiles.TILE_SIZE].isBlocking((entity.getFeetY() + 1) / Tiles.TILE_SIZE,
+								(screen.getHitbox().getUpLeftPoint().getIntX() + entity.getFeetX() - 2)
+										/ Tiles.TILE_SIZE,
+								entity))
+			return true;
 		else
-			return 0;
+			return false;
 	}
 
 	/**

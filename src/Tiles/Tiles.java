@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
+import Entity.Entity;
 import Util.Coordinate2D;
 import Util.Hitbox;
 
@@ -24,6 +25,7 @@ public class Tiles {
 
 	private String nom;
 	private Image tilesSpr; // Sprite of the tiles
+	public final boolean BLOCKED;
 
 	// Constructor :
 
@@ -35,12 +37,30 @@ public class Tiles {
 	 * @param tileSpr
 	 *            sprite of the tiles
 	 */
-	public Tiles(String nom, Image tileSpr) {
+	public Tiles(String nom, Image tileSpr, boolean blocking) {
 		this.nom = nom;
 		this.tilesSpr = tileSpr;
+		BLOCKED = blocking;
 	}
 
 	// Function :
+
+	/**
+	 * Test if the tiles blocked the entity
+	 * 
+	 * @param x
+	 *            the coordinate of the tiles in the x axis (parent to the tiles
+	 *            array)
+	 * @param y
+	 *            the coordinate of the tiles in the y axis (parent to the tiles
+	 *            array)
+	 * @param victim
+	 *            the entity we are testing
+	 * @return true if the tiles is blocking, false otherwise
+	 */
+	public boolean isBlocking(int x, int y, Entity victim) {
+		return returnTilesHitbox(x, y).collideWith(victim.getHitbox());
+	}
 
 	/**
 	 * Return a hitbox of the tiles allowing hitbox colliding check
