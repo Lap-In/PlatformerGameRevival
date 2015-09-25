@@ -172,10 +172,4 @@ public class Game {
 		Constante.hero.move(0, (Constante.frameOnFalling * Constante.fallSpeedX));
 		Constante.frameOnFalling++;
 	}
-
-	// Function Main :
-
-	public static void main(String[] args) {
-		new Game();
-	}
 }
